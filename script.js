@@ -45,7 +45,6 @@
       { id: 'height', val: parseFloat(document.getElementById('height').value), msg: 'Valid height (50-300 cm).' }
     ];
 
-    // Basic validation logic
     if (!fields[0].val || fields[0].val.length > 100) { setError('name', fields[0].msg); valid = false; }
     if (Number.isNaN(fields[1].val) || fields[1].val < 1 || fields[1].val > 120) { setError('age', fields[1].msg); valid = false; }
     if (!fields[2].val) { setError('sex', fields[2].msg); valid = false; }
@@ -60,12 +59,20 @@
     return null;
   }
 
+  // Updated computeBmi using switch-case structure
   function computeBmi(weight, heightCm) {
     const bmi = +(weight / ((heightCm / 100) ** 2)).toFixed(1);
-    if (bmi < 18.5) return { bmi, category: 'Underweight', color: '#5DADE2', message: 'Consider a balanced diet.' };
-    if (bmi < 25) return { bmi, category: 'Normal', color: '#58D68D', message: 'Great job!' };
-    if (bmi < 30) return { bmi, category: 'Overweight', color: '#F5B041', message: 'Mindful eating.' };
-    return { bmi, category: 'Obese', color: '#EC7063', message: 'Consult a provider.' };
+    
+    switch (true) {
+      case (bmi < 18.5):
+        return { bmi, category: 'Underweight', color: '#5DADE2', message: 'Consider a balanced diet.' };
+      case (bmi < 25):
+        return { bmi, category: 'Normal', color: '#58D68D', message: 'Great job!' };
+      case (bmi < 30):
+        return { bmi, category: 'Overweight', color: '#F5B041', message: 'Mindful eating.' };
+      default:
+        return { bmi, category: 'Obese', color: '#EC7063', message: 'Consult a provider.' };
+    }
   }
 
   async function recordSubmission(data, bmiInfo) {
