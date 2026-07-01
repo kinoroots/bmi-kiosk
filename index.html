@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Health Self-Check Kiosk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>MASSODEX</h1>
+    <p>A quick and easy health monitoring kiosk.</p>
+  </header>
+
+  <main class="wrapper" id="mainContent">
+    <section class="card" aria-labelledby="formTitle">
+      <h2 id="formTitle" class="visually-hidden">BMI Form</h2>
+
+      <form id="bmiForm" novalidate aria-describedby="formHelp">
+        <p id="formHelp" class="visually-hidden">Fill all fields to compute your BMI. You may opt in to record anonymized data.</p>
+
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" inputmode="text" placeholder="Enter your name" required aria-required="true" />
+          <div class="error" id="err-name" aria-live="polite"></div>
+        </div>
+
+          <div class="half-width">
+            <label for="age">Age</label>
+            <input id="age" name="age" type="number" min="1" max="120" placeholder="18" required aria-required="true" />
+            <div class="error" id="err-age" aria-live="polite"></div>
+          </div>
+
+          <div class="half-width">
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex" required aria-required="true">
+              <option value="" disabled selected>Choose sex</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <div class="error" id="err-sex" aria-live="polite"></div>
+          </div>
+
+        <div class="form-group row-group">
+          <div class="half-width">
+            <label for="weight">Weight (kg)</label>
+            <input id="weight" name="weight" type="number" min="1" step="0.1" placeholder="65.5" required aria-required="true" />
+            <div class="error" id="err-weight" aria-live="polite"></div>
+          </div>
+
+          <div class="half-width">
+            <label for="height">Height (cm)</label>
+            <input id="height" name="height" type="number" min="50" max="300" step="0.1" placeholder="170" required aria-required="true" />
+            <div class="error" id="err-height" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input id="recordOptIn" name="recordOptIn" type="checkbox" />
+            <span>Opt in to record anonymized submission</span>
+          </label>
+          <div class="hint">If you opt in, only anonymized metrics will be sent to the server.</div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="submitBtn">Compute My BMI</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="right-column">
+      <div class="card" aria-labelledby="guideTitle">
+        <h3 id="guideTitle">Quick Reference</h3>
+        <p><strong>Conversions:</strong><br>1 inch = 2.54 cm<br>1 kg = 2.204 lbs</p>
+        <hr>
+        <h3>About BMI</h3>
+        <p>Body Mass Index (BMI) is a simple screening tool to categorize individuals based on mass and height. It does not measure body fat directly. Consult a healthcare provider for a professional assessment.</p>
+      </div>
+
+      <section id="resultCard" class="card hidden" aria-live="polite" aria-atomic="true" tabindex="-1">
+        <h2 id="resultName"></h2>
+        <p class="bmi-score">Your BMI is: <strong id="resultBmi"></strong></p>
+        <div id="resultCategory" class="category-badge" role="status"></div>
+        <p id="resultMessage"></p>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Campus Health & Wellness</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+:root{
+  --bg-main:#EAECF0;
+  --text-primary:#573721;
+  --structure-dark:#FE7F2D;
+  --accent-orange:#233D4D;
+  --white:#fff0de;
+  --error:#d9534f;
+  --success:#58D68D;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Poppins',sans-serif;
+  background-color:var(--bg-main);
+  color:var(--text-primary);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+  padding:2rem 1rem;
+}
+
+header{text-align:center;margin-bottom:1.5rem}
+.wrapper{
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:1.5rem;
+  max-width:980px;
+  width:100%;
+  align-items:start;
+}
+
+.right-column{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+
+.card{
+  background:var(--white);
+  border:1px solid #d1d5db;
+  padding:1.6rem;
+  border-radius:12px;
+  box-shadow:0 4px 6px rgba(0,0,0,0.06);
+}
+
+.form-group{display:flex;flex-direction:column;margin-bottom:1rem}
+.row-group{display:flex;gap:1rem}
+.half-width{flex:1;display:flex;flex-direction:column}
+label{font-weight:600;margin-bottom:0.4rem;color:var(--structure-dark)}
+input,select,button{
+  font-family:inherit;
+  font-size:1rem;
+}
+input,select{
+  padding:0.7rem;border:1px solid #ccc;border-radius:6px;background:#f9fafb;
+}
+input:focus,select:focus{outline:3px solid rgba(35,61,77,0.12);border-color:var(--accent-orange)}
+.error{color:var(--error);font-size:0.9rem;height:1.1rem;margin-top:0.35rem}
+.hint{font-size:0.9rem;color:#6b7280;margin-top:0.25rem}
+
+button{
+  width:100%;
+  padding:0.9rem;
+  background:var(--structure-dark);
+  color:var(--white);
+  border:none;border-radius:6px;font-weight:700;cursor:pointer;transition:background .2s;
+}
+button:hover{background:var(--accent-orange)}
+
+.category-badge{
+  display:inline-block;padding:0.4rem 0.6rem;border-radius:8px;color:#fff;font-weight:700;margin:0.5rem 0;
+}
+
+.hidden{display:none !important}
+
+.visually-hidden{
+  position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px;
+}
+
+@media (max-width:768px){
+  .wrapper{grid-template-columns:1fr}
+  .right-column{order:2}
+}
